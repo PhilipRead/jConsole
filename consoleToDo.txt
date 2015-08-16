@@ -1,0 +1,6 @@
+-Add misc keys
+-Investigate way to wrap input text
+-Paste functionality - VERY HARD
+-Add functions
+-Second Terminal
+-Generalize input offset values

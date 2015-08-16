@@ -1,0 +1,29 @@
+body {
+	font-family: 'Lucida Console';
+	font-size: 13px;
+	background-color: black;
+}
+
+#console {
+	color: lime;
+}
+
+#cursor {
+	margin-left: -.5ch;
+}
+
+#prompt, #cursor {
+	-moz-user-select: none; 
+	-khtml-user-select: none; 
+	-webkit-user-select: none; 
+	-o-user-select: none;
+}
+
+::selection {
+	background: lime; /* WebKit/Blink Browsers */
+	color: black;
+}
+::-moz-selection {
+	background: lime; /* Gecko Browsers */
+	color: black
+}
