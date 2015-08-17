@@ -1,4 +1,5 @@
 //namespaces
+var KeyUtils = {};
 var Keys = {};
 
 //global vars
