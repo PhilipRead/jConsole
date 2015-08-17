@@ -16,12 +16,12 @@ KeyUtils.keyDownHandler = function(event) {
 	var keyCode = event.keyCode;
 	if(keyCode == Keys.keyCode.LEFT_ARROW) {
 		if(cursorPosition > 0) {
-			setCursorVals(cursorPosition - 1, cursorMargin + 1 );
+			VisualUtils.setCursorVals(cursorPosition - 1, cursorMargin + 1 );
 		}
 	}
 	else if(keyCode == Keys.keyCode.RIGHT_ARROW) {
 		if(cursorPosition < $('#input').text().length) {
-			setCursorVals(cursorPosition + 1, cursorMargin - 1 );
+			VisualUtils.setCursorVals(cursorPosition + 1, cursorMargin - 1 );
 		}
 	}
 	else if(keyCode == Keys.keyCode.UP_ARROW) {
@@ -29,21 +29,21 @@ KeyUtils.keyDownHandler = function(event) {
 		historyIndex > 0) {
 			var newInput = commandHistory[--historyIndex];
 			$('#input').html(newInput);
-			setCursorVals(newInput.length, 0);
+			VisualUtils.setCursorVals(newInput.length, 0);
 		}
 	}
 	else if(keyCode == Keys.keyCode.DOWN_ARROW) {
 		if(historyIndex < commandHistory.length - 1) {
 			var newInput = commandHistory[++historyIndex];
 			$('#input').html(newInput);
-			setCursorVals(newInput.length, 0);
+			VisualUtils.setCursorVals(newInput.length, 0);
 		}
 	}
 	else if(keyCode == Keys.keyCode.HOME) { 
-		setCursorVals(0, $('#input').text().length);
+		VisualUtils.setCursorVals(0, $('#input').text().length);
 	}
 	else if(keyCode == Keys.keyCode.END) { 
-		setCursorVals($('#input').text().length, 0);
+		VisualUtils.setCursorVals($('#input').text().length, 0);
 	}
 	else if(keyCode == Keys.keyCode.CAPS_LOCK) {
 		capsOn = !capsOn;
@@ -108,8 +108,8 @@ KeyUtils.keyDownHandler = function(event) {
 		$('#input').html('');
 		$('#cursor').html('');
 		$('#output').append('<div>> ' + curInput + '</div>');
-		printOutput('Nice. You printed. You printed. Nice.', 20);
-		setCursorVals(0,0);
+		VisualUtils.printOutput('Nice. You printed. You printed. Nice.', 20);
+		VisualUtils.setCursorVals(0,0);
 	}
 	else {
 		return;
@@ -121,7 +121,7 @@ KeyUtils.keyDownHandler = function(event) {
 KeyUtils.keyUpHandler = function(event) {
 	if(!commandExecuting) {
 		clearInterval(cursorBlinkTimer);
-		cursorBlinkTimer = setInterval(cursorBlink, 500);
+		cursorBlinkTimer = setInterval(VisualUtils.cursorBlink, 500);
 	}
 };
 
@@ -176,7 +176,7 @@ KeyUtils.deleteInput = function(leftIndex, rightIndex) {
 	var suffix = curInput.slice(rightIndex, curInput.length);
 	var newInput =  prefix + suffix;
 	$('#input').html(newInput);
-	setCursorVals(prefix.length, suffix.length);
+	VisualUtils.setCursorVals(prefix.length, suffix.length);
 };
 
 KeyUtils.deleteSelected = function() {

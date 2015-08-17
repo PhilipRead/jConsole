@@ -9,16 +9,16 @@ MouseUtils.mousedownConsole = function(event) {
 	var inputLen = $('#input').text().length;
 	
 	if(xPos <= leftBound) { // Extreme Left
-		setCursorVals(0, inputLen);
+		VisualUtils.setCursorVals(0, inputLen);
 	}
 	else if(xPos >= rightBound) { //Extreme Right
-		setCursorVals(inputLen, 0);
+		VisualUtils.setCursorVals(inputLen, 0);
 	}
 	else //in the middle
 	{
 		var innerOffset = xPos - leftBound;
 		var prefixLen = Math.ceil(innerOffset/fontWidth);
 		var suffixLen = inputLen - prefixLen;
-		setCursorVals(prefixLen, suffixLen);
+		VisualUtils.setCursorVals(prefixLen, suffixLen);
 	}
 };

@@ -2,6 +2,7 @@
 var KeyUtils = {};
 var Keys = {};
 var MouseUtils = {};
+var VisualUtils = {};
 
 //global vars
 var capsOn;

@@ -5,8 +5,6 @@
 -Second Terminal
 -Generalize input offset values
 -Seperate Logic into seperate files
-	-Startup
-	-Main functions
 	-Directory Stuctures
 	-Commands
 -Add ability to replace highlighted text with character when pressed.
