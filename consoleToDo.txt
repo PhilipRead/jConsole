@@ -4,3 +4,11 @@
 -Add functions
 -Second Terminal
 -Generalize input offset values
+-Seperate Logic into seperate files
+	-Keystrokes
+	-KeyCodes
+	-Click events
+	-Startup
+	-Main functions
+	-Directory Stuctures
+	-Commands
