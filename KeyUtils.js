@@ -70,40 +70,40 @@ KeyUtils.keyDownHandler = function(event) {
 				newChar = String.fromCharCode(keyCode + 32);
 			}
 		}
-		appendNewChar(newChar);
+		KeyUtils.appendNewChar(newChar);
 	}
 	else if(keyCode == Keys.keyCode.SPACE) {
-		appendNewChar('&nbsp');
+		KeyUtils.appendNewChar('&nbsp');
 	}
 	else if(keyCode == Keys.keyCode.BACKSPACE) { 
 		//Deletes highlighted text, else if not highlighted backspaces once
-		if(deleteSelected() == false) { 
+		if(KeyUtils.deleteSelected() == false) { 
 			if(cursorPosition > 0) {
-				deleteInput(cursorPosition - 1, cursorPosition);
+				KeyUtils.deleteInput(cursorPosition - 1, cursorPosition);
 			}
 		}
 	}
 	else if(keyCode == Keys.keyCode.DELETE) {
-		deleteSelected();
+		KeyUtils.deleteSelected();
 	}
 	else if(keyCode >= Keys.keyCode.KEY_0 && keyCode <= Keys.keyCode.KEY_9) { 
 		var newChar;
 		if(event.shiftKey) {
-			newChar = shiftNumChar(keyCode);
+			newChar = KeyUtils.shiftNumChar(keyCode);
 		}
 		else { //shift key not down
 			newChar = String.fromCharCode(keyCode);
 		}
-		appendNewChar(newChar);
+		KeyUtils.appendNewChar(newChar);
 	}
 	else if(keyCode >= Keys.keyCode.NUMPAD_0 && keyCode <= Keys.keyCode.NUMPAD_9) { 
 		var newChar = String.fromCharCode(keyCode - 48);
-		appendNewChar(newChar);
+		KeyUtils.appendNewChar(newChar);
 	}
 	else if(keyCode == Keys.keyCode.ENTER) {
 		commandExecuting = true;
 		var curInput = $('#input').text();
-		addToHistory(curInput);
+		KeyUtils.addToHistory(curInput);
 		$('#prompt').html('');
 		$('#input').html('');
 		$('#cursor').html('');
@@ -125,7 +125,7 @@ KeyUtils.keyUpHandler = function(event) {
 	}
 };
 
-function shiftNumChar(keyCode) {
+KeyUtils.shiftNumChar = function(keyCode) {
 	var charCode;
 	switch(keyCode) {
 		case Keys.keyCode.KEY_0: // )
@@ -162,7 +162,7 @@ function shiftNumChar(keyCode) {
 	return String.fromCharCode(charCode);
 };
 
-function appendNewChar(newChar) {
+KeyUtils.appendNewChar = function(newChar) {
 	var curInput = $('#input').text();
 	var prefixStr = curInput.substring(0, cursorPosition);
 	var suffixStr = curInput.substring(cursorPosition, curInput.length);
@@ -170,7 +170,7 @@ function appendNewChar(newChar) {
 	++cursorPosition;
 };
 
-function deleteInput(leftIndex, rightIndex) {
+KeyUtils.deleteInput = function(leftIndex, rightIndex) {
 	var curInput = $('#input').text();
 	var prefix = curInput.slice(0,leftIndex);
 	var suffix = curInput.slice(rightIndex, curInput.length);
@@ -179,7 +179,7 @@ function deleteInput(leftIndex, rightIndex) {
 	setCursorVals(prefix.length, suffix.length);
 };
 
-function deleteSelected() {
+KeyUtils.deleteSelected = function() {
 	var selected = window.getSelection();
 	var inputNode = $('#input').contents()[0];
 	if(selected.anchorNode == selected.focusNode //Highlighted text does not span multiple elements
@@ -196,14 +196,14 @@ function deleteSelected() {
 				leftIndex = anchorOffset;
 				rightIndex = focusOffset;
 			}
-			deleteInput(leftIndex, rightIndex);
+			KeyUtils.deleteInput(leftIndex, rightIndex);
 			return true;
 		}
 	}
 	return false;
 };
 
-function addToHistory(rawCommand) {
+KeyUtils.addToHistory = function(rawCommand) {
 	var command = rawCommand.trim();
 	if(command.length > 0 
 	&& command != commandHistory[commandHistory.length - 1]) {
