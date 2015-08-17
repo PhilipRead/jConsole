@@ -1,6 +1,7 @@
 //namespaces
 var KeyUtils = {};
 var Keys = {};
+var MouseUtils = {};
 
 //global vars
 var capsOn;
