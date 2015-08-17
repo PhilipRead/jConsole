@@ -1,5 +1,3 @@
-var Keys = {};
-
 Keys.keyCode = {
 	BACKSPACE: 8,
 	TAB: 9,

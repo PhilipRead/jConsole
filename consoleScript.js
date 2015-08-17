@@ -4,8 +4,8 @@ $(document).ready(function() {
 	$('#commandLine').mousedown(mousedownConsole);
 });
 
-var fontWidth = 8;
-var inputOffset = 24;
+fontWidth = 8;
+inputOffset = 24;
 
 function mousedownConsole(event) {
 	var xPos = event.clientX;
@@ -29,10 +29,10 @@ function mousedownConsole(event) {
 	}
 }
 
-var commandExecuting = false;
-var capsOn = false;
-var commandHistory = [];
-var historyIndex = -1;
+commandExecuting = false;
+capsOn = false;
+commandHistory = [];
+historyIndex = -1;
 
 $(document).keydown(function(event) {
 	if(commandExecuting) {
@@ -93,8 +93,7 @@ $(document).keydown(function(event) {
 				newChar = String.fromCharCode(keyCode);
 			}
 		}
-		else //shift and/or ctrl key not down
-		{
+		else { //shift and/or ctrl key not down
 			if(capsOn) {
 				newChar = String.fromCharCode(keyCode);
 			}
@@ -157,16 +156,11 @@ $(document).keyup(function(event) {
 	}
 });
 
-var cursorPosition;
-var cursorMargin;
-
 function setCursorVals(prefixLen, suffixLen) {
 	cursorPosition = prefixLen;
 	cursorMargin = suffixLen;
 	$('#cursor').css('margin-left', '-' + String(cursorMargin) + '.5ch');
 }
-
-var cursorBlinkTimer;
 
 function cursorBlink() {
 	cursorBody = $('#cursor').text();
@@ -271,10 +265,6 @@ function printOutput(output, speed) {
 	lastDiv = $('#output').children().last();
 	outputInterval = setInterval(scrollPrint, speed);
 }
-
-var outputInterval;
-var outputTxt;
-var lastDiv;
 
 function scrollPrint() {
 	if(outputTxt)
