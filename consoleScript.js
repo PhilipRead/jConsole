@@ -291,7 +291,6 @@ function scrollPrint() {
 	}
 }
 
-function 
 var App = {}
 
 App.keyCode = {
