@@ -111,8 +111,21 @@ KeyUtils.keyDownHandler = function(event) {
 		VisualUtils.printOutput('Nice. You printed. You printed. Nice.', 20);
 		VisualUtils.setCursorVals(0,0);
 	}
-	else {
-		return;
+	else { 
+		var newChar;
+		if(event.shiftKey) {
+			newChar = KeyUtils.miscKeyCharShifted(keyCode);
+		}
+		else {
+			newChar = KeyUtils.miscKeyChar(keyCode);
+		}
+		
+		if(newChar) {
+			KeyUtils.appendNewChar(newChar);
+		}
+		else {
+			return;
+		}
 	}
 	
 	event.preventDefault();
@@ -211,3 +224,106 @@ KeyUtils.addToHistory = function(rawCommand) {
 	}
 	historyIndex = commandHistory.length;
 };
+
+KeyUtils.miscKeyChar = function(keyCode) {
+	var charCode
+	switch(keyCode) {
+		case Keys.keyCode.GRAVE_ACCENT: 
+			charCode = 96;
+			break;
+		case Keys.keyCode.DASH: 
+		case Keys.keyCode.SUBTRACT: 
+			charCode = 45;
+			break;
+		case Keys.keyCode.EQUALS: 
+			charCode = 61;
+			break;
+		case Keys.keyCode.OPEN_BRACKET: 
+			charCode = 91;
+			break;
+		case Keys.keyCode.CLOSE_BRACKET: 
+			charCode = 93;
+			break;
+		case Keys.keyCode.BACK_SLASH: 
+			charCode = 92;
+			break;
+		case Keys.keyCode.SEMICOLON: 
+			charCode = 59;
+			break;
+		case Keys.keyCode.SINGLE_QUOTE: 
+			charCode = 39;
+			break;
+		case Keys.keyCode.COMMA: 
+			charCode = 44;
+			break;
+		case Keys.keyCode.PERIOD: 
+		case Keys.keyCode.DECIMAL: 
+			charCode = 46;
+			break;
+		case Keys.keyCode.FORWARD_SLASH: 
+		case Keys.keyCode.DIVIDE: 
+			charCode = 47;
+			break;
+		case Keys.keyCode.MULTIPLY: 
+			charCode = 42;
+			break;
+		case Keys.keyCode.ADD: 
+			charCode = 43;
+			break;
+		default:
+			return null;
+	}
+	return String.fromCharCode(charCode);
+}
+
+KeyUtils.miscKeyCharShifted = function(keyCode) {
+	var charCode
+	switch(keyCode) {
+		case Keys.keyCode.GRAVE_ACCENT: // ~
+			charCode = 126;
+			break;
+		case Keys.keyCode.DASH: // _
+			charCode = 95;
+			break;
+		case Keys.keyCode.EQUALS: // + 
+		case Keys.keyCode.ADD: 
+			charCode = 43;
+			break;
+		case Keys.keyCode.OPEN_BRACKET: // { 
+			charCode = 123;
+			break;
+		case Keys.keyCode.CLOSE_BRACKET: // }
+			charCode = 125;
+			break;
+		case Keys.keyCode.BACK_SLASH: // |
+			charCode = 124;
+			break;
+		case Keys.keyCode.SEMICOLON:  // :
+			charCode = 58;
+			break;
+		case Keys.keyCode.SINGLE_QUOTE: // "
+			charCode = 34;
+			break;
+		case Keys.keyCode.COMMA: // <
+			charCode = 60;
+			break;
+		case Keys.keyCode.PERIOD: // >
+			charCode = 62;
+			break;
+		case Keys.keyCode.FORWARD_SLASH: // ? 
+			charCode = 63;
+			break;
+		case Keys.keyCode.MULTIPLY: 
+			charCode = 42;
+			break;
+		case Keys.keyCode.DIVIDE: 
+			charCode = 47;
+			break;
+		case Keys.keyCode.SUBTRACT: 
+			charCode = 45;
+			break;
+		default:
+			return null;
+	}
+	return String.fromCharCode(charCode);
+}

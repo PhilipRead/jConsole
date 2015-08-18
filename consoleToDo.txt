@@ -1,10 +1,11 @@
--Add misc keys
 -Investigate way to wrap input text
 -Paste functionality - VERY HARD
 -Add functions
 -Second Terminal
 -Generalize input offset values
--Seperate Logic into seperate files
-	-Directory Stuctures
+-Separate Logic into separate files
+	-Directory Structures
 	-Commands
 -Add ability to replace highlighted text with character when pressed.
+-Create startup sequence.
+-Tab completing.
