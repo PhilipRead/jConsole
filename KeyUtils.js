@@ -108,7 +108,7 @@ KeyUtils.keyDownHandler = function(event) {
 		$('#input').html('');
 		$('#cursor').html('');
 		$('#output').append('<div>> ' + curInput + '</div>');
-		VisualUtils.printOutput('Nice. You printed. You printed. Nice.', 20);
+		Commands.execute(curInput);
 		VisualUtils.setCursorVals(0,0);
 	}
 	else { 

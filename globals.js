@@ -1,4 +1,5 @@
 //namespaces
+var Commands = {};
 var Directory = {};
 var KeyUtils = {};
 var Keys = {};
