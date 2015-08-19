@@ -6,6 +6,5 @@
 -Separate Logic into separate files
 	-Directory Structures
 	-Commands
--Add ability to replace highlighted text with character when pressed.
 -Create startup sequence.
 -Tab completing.

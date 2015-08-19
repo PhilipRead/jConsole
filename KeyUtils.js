@@ -176,6 +176,7 @@ KeyUtils.shiftNumChar = function(keyCode) {
 };
 
 KeyUtils.appendNewChar = function(newChar) {
+	KeyUtils.deleteSelected();
 	var curInput = $('#input').text();
 	var prefixStr = curInput.substring(0, cursorPosition);
 	var suffixStr = curInput.substring(cursorPosition, curInput.length);
