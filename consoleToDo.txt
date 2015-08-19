@@ -1,6 +1,8 @@
 -Investigate way to wrap input text
 -Paste functionality - VERY HARD
 -Add functions
+	- ls
+	- cd
 -Second Terminal
 -Generalize input offset values
 -Separate Logic into separate files
