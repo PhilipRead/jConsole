@@ -6,7 +6,6 @@
 -Second Terminal
 -Generalize input offset values
 -Separate Logic into separate files
-	-Directory Structures
 	-Commands
 -Create startup sequence.
 -Tab completing.
