@@ -4,6 +4,7 @@ var Directory = {};
 var KeyUtils = {};
 var Keys = {};
 var MouseUtils = {};
+var System = {};
 var VisualUtils = {};
 
 //global vars
