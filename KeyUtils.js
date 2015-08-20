@@ -104,10 +104,11 @@ KeyUtils.keyDownHandler = function(event) {
 		commandExecuting = true;
 		var curInput = $('#input').text();
 		KeyUtils.addToHistory(curInput);
+		var curPrompt = $('#prompt').text();
 		$('#prompt').html('');
 		$('#input').html('');
 		$('#cursor').html('');
-		$('#output').append('<div>> ' + curInput + '</div>');
+		$('#output').append('<div>' + curPrompt + curInput + '</div>');
 		Commands.execute(curInput);
 		VisualUtils.setCursorVals(0,0);
 	}

@@ -2,7 +2,7 @@ VisualUtils.setCursorVals = function(prefixLen, suffixLen) {
 	cursorPosition = prefixLen;
 	cursorMargin = suffixLen;
 	$('#cursor').css('margin-left', '-' + String(cursorMargin) + '.5ch');
-}
+};
 
 VisualUtils.cursorBlink = function() {
 	if($('#cursor').text().length > 0) {
@@ -11,14 +11,14 @@ VisualUtils.cursorBlink = function() {
 	else {
 		$('#cursor').html('|');
 	}
-}
+};
 
 VisualUtils.printOutput = function(output, speed) {
 	outputTxt = output;
 	$('#output').append('<div></div>');
 	lastDiv = $('#output').children().last();
 	outputInterval = setInterval(VisualUtils.scrollPrint, speed);
-}
+};
 
 VisualUtils.scrollPrint = function() {
 	if(outputTxt) {
@@ -27,9 +27,23 @@ VisualUtils.scrollPrint = function() {
 		outputTxt = outputTxt.slice(1);
 	}
 	else {
-		$('#prompt').html('> ');
 		clearInterval(outputInterval);
-		cursorBlinkTimer = setInterval(VisualUtils.cursorBlink, 500);
-		commandExecuting = false;
+		VisualUtils.returnControl();
 	}
-}
+};
+
+VisualUtils.setCurrentFolder = function(newCurFolder) {
+	curFolder = newCurFolder;
+	VisualUtils.setPrompt();
+};
+
+VisualUtils.returnControl = function() {
+	VisualUtils.setPrompt();
+	cursorBlinkTimer = setInterval(VisualUtils.cursorBlink, 500);
+	commandExecuting = false;
+};
+
+VisualUtils.setPrompt = function() {
+	var curPath = curFolder.getPath();
+	$('#prompt').html('/' + curPath + '> ');
+};

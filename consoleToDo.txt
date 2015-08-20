@@ -3,9 +3,13 @@
 -Add functions
 	- ls
 	- cd
+	- cd..
+	- mkdir
 -Second Terminal
 -Generalize input offset values
 -Separate Logic into separate files
 	-Commands
 -Create startup sequence.
 -Tab completing.
+-Create an execution queue system.
+-Store Directory info.
