@@ -22,8 +22,7 @@ function Folder(name, parent, children) {
 				this.children.push(newChild);
 			}
 			else {
-				var newChildUpped = newChild.toUpperCase();
-				var newIndex = insertChildIndex(newChild.toUpperCase(), this.children, 0, this.children.length - 1);
+				var newIndex = Directory.insertChildIndex(newChild.name.toUpperCase(), this.children, 0, this.children.length - 1);
 				this.children.splice(newIndex, 0, newChild);
 			}
 		}
@@ -55,14 +54,14 @@ File.prototype = new Directory();
 Directory.insertChildIndex = function(newChildUpped, childArr, minIndex, maxIndex) {
 	var middleIndex = minIndex + Math.floor((maxIndex  - minIndex)/2);
 	
-	if(newChildUpped > childArr[maxIndex].toUpperCase()) {
+	if(newChildUpped > childArr[maxIndex].name.toUpperCase()) {
 		return (maxIndex + 1);
 	}
-	else if(newChildUpped < childArr[minIndex].toUpperCase()) {
+	else if(newChildUpped < childArr[minIndex].name.toUpperCase()) {
 		return (minIndex);
 	}
 	
-	var middleChildUpped = childArr[middleIndex].toUpperCase();
+	var middleChildUpped = childArr[middleIndex].name.toUpperCase();
 	if(newChildUpped < middleChildUpped) {
 		Directory.insertChildIndex(newChildUpped, childArr, minIndex, middleIndex - 1);
 	}
