@@ -11,16 +11,15 @@ var VisualUtils = {};
 var capsOn;
 var commandExecuting;
 var commandHistory;
-var curFolder;
 var cursorBlinkTimer;
 var cursorMargin;
 var cursorPosition;
+var curSystem;
 var fontWidth;
 var historyIndex;
 var inputOffset;
 var lastDiv;
 var outputInterval;
 var outputTxt;
-var userSystem;
 
 

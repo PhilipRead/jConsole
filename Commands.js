@@ -10,11 +10,19 @@ Commands.execute = function(rawCommand) {
 	switch(command) {
 		case 'ls':
 			Commands.ls();
+			break;
 		default:
 			VisualUtils.printOutput(command + ' is not a recognized command on this system.', 15);
 	}	
-}
+};
 
-//Commands.ls = function() {
-	//var 
-//}
+Commands.ls = function() {
+	var outputDirs = '';
+	var curChildren = curSystem.root.children;
+	var i;
+	for(i = 0; i < curChildren.length; i++) {
+		outputDirs += curChildren[i].name + '<b';
+	}
+	console.log(outputDirs);
+	VisualUtils.printOutput(outputDirs, 20);
+};

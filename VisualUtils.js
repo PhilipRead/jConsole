@@ -33,7 +33,7 @@ VisualUtils.scrollPrint = function() {
 };
 
 VisualUtils.setCurrentFolder = function(newCurFolder) {
-	curFolder = newCurFolder;
+	curSystem.curFolder = newCurFolder;
 	VisualUtils.setPrompt();
 };
 
@@ -44,6 +44,6 @@ VisualUtils.returnControl = function() {
 };
 
 VisualUtils.setPrompt = function() {
-	var curPath = curFolder.getPath();
+	var curPath = curSystem.curFolder.getPath();
 	$('#prompt').html('/' + curPath + '> ');
 };

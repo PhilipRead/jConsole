@@ -18,6 +18,7 @@ function Folder(name, parent, children) {
 	this.children = children;
 	this.addChild = function(newChild) {
 		if($.inArray(newChild, this.children) == -1) { //Doesn't exist
+			newChild.parent = this;
 			if(this.children.length == 0) {
 				this.children.push(newChild);
 			}
