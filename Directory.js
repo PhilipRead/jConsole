@@ -23,7 +23,6 @@ function Folder(name, parent, children) {
 		}
 		else {
 			var newIndex = Directory.insertChildIndex(newChild.name, this.children, 0, this.children.length - 1);
-			console.log(newIndex);
 			if(newIndex != null) {
 				this.children.splice(newIndex, 0, newChild);
 			}
