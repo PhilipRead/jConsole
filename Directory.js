@@ -17,14 +17,18 @@ function Folder(name, parent, children) {
 	this.parent = parent;
 	this.children = children;
 	this.addChild = function(newChild) {
-		if($.inArray(newChild, this.children) == -1) { //Doesn't exist
-			newChild.parent = this;
-			if(this.children.length == 0) {
-				this.children.push(newChild);
+		newChild.parent = this;
+		if(this.children.length == 0) {
+			this.children.push(newChild);
+		}
+		else {
+			var newIndex = Directory.insertChildIndex(newChild.name, this.children, 0, this.children.length - 1);
+			console.log(newIndex);
+			if(newIndex != null) {
+				this.children.splice(newIndex, 0, newChild);
 			}
 			else {
-				var newIndex = Directory.insertChildIndex(newChild.name.toUpperCase(), this.children, 0, this.children.length - 1);
-				this.children.splice(newIndex, 0, newChild);
+				// Folder already exists. Inform user.
 			}
 		}
 	};
@@ -52,24 +56,24 @@ function File(name, data) {
 
 File.prototype = new Directory();
 
-Directory.insertChildIndex = function(newChildUpped, childArr, minIndex, maxIndex) {
+Directory.insertChildIndex = function(newChildName, childArr, minIndex, maxIndex) {
 	var middleIndex = minIndex + Math.floor((maxIndex  - minIndex)/2);
 	
-	if(newChildUpped > childArr[maxIndex].name.toUpperCase()) {
+	if(newChildName > childArr[maxIndex].name) {
 		return (maxIndex + 1);
 	}
-	else if(newChildUpped < childArr[minIndex].name.toUpperCase()) {
+	else if(newChildName < childArr[minIndex].name) {
 		return (minIndex);
 	}
 	
-	var middleChildUpped = childArr[middleIndex].name.toUpperCase();
-	if(newChildUpped < middleChildUpped) {
-		Directory.insertChildIndex(newChildUpped, childArr, minIndex, middleIndex - 1);
+	var middleChildName = childArr[middleIndex].name;
+	if(newChildName < middleChildName) {
+		return Directory.insertChildIndex(newChildName, childArr, minIndex, middleIndex - 1);
 	}
-	else if(newChildUpped > middleChildUpped) {
-		Directory.insertChildIndex(newChildUpped, childArr, middleIndex + 1, maxIndex);
+	else if(newChildName > middleChildName) {
+		return Directory.insertChildIndex(newChildName, childArr, middleIndex + 1, maxIndex);
 	}
-	else { //equal but different capitalization
-		return (middleIndex + 1);
+	else { //Equal
+		return null;
 	}
 }

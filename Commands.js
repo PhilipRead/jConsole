@@ -21,7 +21,7 @@ Commands.ls = function() {
 	var curChildren = curSystem.root.children;
 	var i;
 	for(i = 0; i < curChildren.length; i++) {
-		outputDirs += curChildren[i].name + '<b';
+		outputDirs += curChildren[i].name + ' ';
 	}
 	console.log(outputDirs);
 	VisualUtils.printOutput(outputDirs, 20);
