@@ -28,7 +28,7 @@ VisualUtils.scrollPrint = function() {
 	}
 	else {
 		clearInterval(outputInterval);
-		VisualUtils.returnControl();
+		Commands.executeQueue();
 	}
 };
 

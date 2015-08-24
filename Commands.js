@@ -12,17 +12,36 @@ Commands.execute = function(rawCommand) {
 			Commands.ls();
 			break;
 		default:
-			VisualUtils.printOutput(command + ' is not a recognized command on this system.', 15);
-	}	
+			var nextExecution = function() {
+				VisualUtils.printOutput(command + ' is not a recognized command on this system.', 15);
+			};
+			curSystem.executionQueue.push(nextExecution);
+	}
+
+	Commands.executeQueue();
 };
 
 Commands.ls = function() {
-	var outputDirs = '';
-	var curChildren = curSystem.root.children;
+	var curChildren = curSystem.curFolder.children;
 	var i;
 	for(i = 0; i < curChildren.length; i++) {
-		outputDirs += curChildren[i].name + ' ';
+		var nextExecution;
+		(function (thisChildName) {
+			nextExecution = function() {
+				VisualUtils.printOutput(thisChildName, 20);
+			};
+		})(curChildren[i].name);
+		curSystem.executionQueue.push(nextExecution);
 	}
-	console.log(outputDirs);
-	VisualUtils.printOutput(outputDirs, 20);
+};
+
+Commands.executeQueue = function() {
+	var execQueue = curSystem.executionQueue;
+	if(execQueue.length > 0) {
+		var nextExec = execQueue.shift();
+		nextExec();
+	}
+	else {
+		VisualUtils.returnControl();
+	}
 };
