@@ -4,6 +4,7 @@
 	- cd
 	- cd..
 	- mkdir
+	- rm
 -Second Terminal
 -Generalize input offset values
 -Create startup sequence.
